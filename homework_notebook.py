@@ -26,6 +26,12 @@ while salir == False :
         print("Seleccionaste la opcion 3: Marcar una tarea como completada")
     elif opcion == 4 :
         print("Seleccionaste la opcion 4: Eliminar una tarea")
+        eliminar_tarea = int(input("Seleccione el numero de la tarea que deseas eliminar: "))
+        try :
+            cuaderno.pop(eliminar_tarea - 1)
+            print("La tarea se elimino correctamente!\n")
+        except IndexError:
+            print("Parece que no tienes ese numero de tarea\n")
     elif opcion == 5 :
         print("\nAdios, vuelva pronto!")
         salir = True
