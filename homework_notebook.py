@@ -1,5 +1,6 @@
 salir = False
 cuaderno = []
+control_tareas = []
 print("Bienvenido a la libreta de tareas.\n")
 while salir == False :
     print("\nListado de opciones del cuaderno.")
@@ -13,6 +14,7 @@ while salir == False :
         print("\nSeleccionaste la opcion 1: Agregar una tarea")
         tarea = input("Ingresa el contenido de la tarea: ")
         cuaderno.append(tarea)
+        control_tareas.append(False)
         print("Tarea agregada con exito! \n")  
     elif opcion == 2 :
         print("\nSeleccionaste la opcion 2: Ver todas las tareas")
@@ -21,9 +23,26 @@ while salir == False :
         else :
             num_tarea = 1
             for mi_tarea in cuaderno : 
-                print(f"Tarea numero {num_tarea} : {mi_tarea}") 
+                print(f"Tarea numero {num_tarea} : {mi_tarea}")
+                num_tarea += 1 
     elif opcion == 3 :
         print("Seleccionaste la opcion 3: Marcar una tarea como completada")
+        num_tarea = 1
+        for mis_tareas in control_tareas :
+            
+            if mis_tareas == False :
+                estado = "Sin completar"
+            else :
+                estado = "Completada"     
+            print(f"Tarea {num_tarea} con estado {estado}")
+            
+            num_tarea += 1
+        numero_tarea = int(input("Para cambiar el estado de una tarea a completado ingrese el numero de la tarea: "))
+        try :
+            control_tareas[(numero_tarea - 1)] = True
+            print("Perfecto su tarea se cambio a completada\n")
+        except IndexError :
+            print("Parece que no tienes ese numero de tarea\n")
     elif opcion == 4 :
         print("Seleccionaste la opcion 4: Eliminar una tarea")
         eliminar_tarea = int(input("Seleccione el numero de la tarea que deseas eliminar: "))
@@ -37,4 +56,3 @@ while salir == False :
         salir = True
     else : 
         print("\nParece que no seleccionaste una opcion valida, por favor intentalo de nuevo.\n")    
-    
