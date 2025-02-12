@@ -9,7 +9,11 @@ while salir == False :
     print("Opcion 3 - Marcar una tarea como completada")
     print("Opcion 4 - Eliminar una tarea")
     print("Opcion 5 - Salir del programa")
-    opcion = int(input("\nSeleccione una opcion del 1 al 5: "))
+    try:
+        opcion = int(input("\nSeleccione una opción del 1 al 5: "))
+    except ValueError:
+        print("\nDebes ingresar un número válido.\n")
+        continue 
     if opcion == 1 :
         print("\nSeleccionaste la opcion 1: Agregar una tarea")
         tarea = input("Ingresa el contenido de la tarea: ")
@@ -17,14 +21,13 @@ while salir == False :
         control_tareas.append(False)
         print("Tarea agregada con exito! \n")  
     elif opcion == 2 :
-        print("\nSeleccionaste la opcion 2: Ver todas las tareas")
-        if len(cuaderno) == 0: 
-            print("Parece que el cuaderno esta vacio, intenta agregar alguna tarea primero\n")
-        else :
-            num_tarea = 1
-            for mi_tarea in cuaderno : 
-                print(f"Tarea numero {num_tarea} : {mi_tarea}")
-                num_tarea += 1 
+        print("\nSeleccionaste la opción 2: Ver todas las tareas")
+        if not cuaderno:  
+            print("Parece que el cuaderno está vacío, intenta agregar alguna tarea primero\n")
+        else:
+            for i, tarea in enumerate(cuaderno):  
+                estado = "✅ Completada" if control_tareas[i] else "❌ Pendiente"
+                print(f"{i + 1}. {tarea} - {estado}")  
     elif opcion == 3 :
         print("Seleccionaste la opcion 3: Marcar una tarea como completada")
         num_tarea = 1
